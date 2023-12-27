@@ -1,6 +1,13 @@
-﻿namespace CMDKhakatonProject.AutoMapper
+﻿using AutoMapper;
+using CMDKhakatonProject.Domain.Entities;
+
+namespace CMDKhakatonProject.AutoMapper
 {
-    public class MappingProfile
+    public class MappingProfile : Profile
     {
+        public MappingProfile()
+        {
+            CreateMap<AppUser, ViewModels.AppUser>();       
+        }
     }
 }

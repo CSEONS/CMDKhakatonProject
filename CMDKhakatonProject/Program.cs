@@ -15,6 +15,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using CMDKhakatonProject.Domain.Interfaces;
+using CMDKhakatonProject.Domain.Repositories.EF;
+using CMDKhakatonProject.Domain.Repositories.Photo;
 
 namespace VolgaIt
 {
@@ -35,10 +38,15 @@ namespace VolgaIt
             });
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-            builder.Services.AddTransient<IDatabaseService, DatabaseService>();
+            builder.Services.AddScoped<IDatabaseService, DatabaseService>();
             builder.Services.AddScoped<IJwtGenerator, JwtGenerator>();
+            builder.Services.AddScoped<IPhotoRepository, PhotoRepository>();
 
-            builder.Services.AddIdentity<AppUser, IdentityRole>(setup => { })
+            builder.Services.AddTransient<IRepository<Courier>, EFCourierRepository>();
+            builder.Services.AddTransient<IRepository<Restourant>, EFRestourantRepository>();
+            builder.Services.AddTransient<IRepository<Dish>, EFDishRepository>();
+
+            builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>(setup => { })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 

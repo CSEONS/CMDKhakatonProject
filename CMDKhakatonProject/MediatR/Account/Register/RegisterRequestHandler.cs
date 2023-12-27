@@ -29,15 +29,16 @@ namespace CMDKhakatonProject.MediatR.Account
             if (await _userManager.ExistByName(request.Username))
                 return new BadRequestObjectResult(new { error = ActionMessages.UsernameTaken(request.Username) });
 
-            if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
-                return new BadRequestObjectResult(new { error = ActionMessages.InvalidCredintials() });
+            if (await _userManager.ExistByEmail(request.Username))
+                return new BadRequestObjectResult(new { error = ActionMessages.UsernameTaken(request.Username) });
 
             await _databaseService.BeginTransactionAsync();
 
             AppUser registeringUser = new AppUser
             {
-                Id = Guid.NewGuid().ToString(),
-                UserName = request.Username
+                Id = Guid.NewGuid(),
+                UserName = request.Username,
+                Email = request.Email,
             };
 
             object error = new object();
