@@ -22,7 +22,7 @@ namespace CMDKhakatonProject.Controllers
         }
 
         [HttpPost("SignUp")]
-        public async Task<IActionResult> Register([FromForm] RegisterRequest request, CancellationToken cancellationToken)
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request, CancellationToken cancellationToken)
         {
             return await _mediator.Send(request, cancellationToken);
         }

@@ -20,6 +20,25 @@ namespace CMDKhakatonProject.Domain
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            AppUser appUser = new() 
+            {
+                Id = Guid.NewGuid(),
+                UserName = "User",
+                PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "User_1")
+            };
+
+            Restaurant restaurant = new()
+            {
+                Id = appUser.Id,
+            };
+
+            builder.Entity<AppUser>()
+                .HasData(appUser);
+
+            builder.Entity<Restaurant>()
+                .HasData(restaurant);
+
+
             builder.Entity<Dish>()
                 .HasOne(d => d.Restourant)
                 .WithMany(r => r.Dishes)
@@ -38,6 +57,16 @@ namespace CMDKhakatonProject.Domain
                 .HasOne(d => d.Dish)
                 .WithMany()
                 .HasForeignKey(d => d.DishId);
+
+            builder.Entity<Reservation>()
+                .HasOne(r => r.Reserver)
+                .WithMany(u => u.Reservations)
+                .HasForeignKey(r => r.ReserverId);
+
+            builder.Entity<Reservation>()
+                .HasOne(r => r.Table)
+                .WithMany()
+                .HasForeignKey(r => r.TableId);
 
             base.OnModelCreating(builder);
         }
