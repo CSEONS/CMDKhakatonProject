@@ -52,7 +52,12 @@ namespace VolgaIt
                 .AddDefaultTokenProviders();
 
 
-            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Config.ConnectionString));
+            Console.WriteLine("Is LocalDb?");
+            var isLocalDb = Console.ReadLine();
+            if (string.IsNullOrEmpty(isLocalDb))
+                builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Config.ServerConnectionString));
+            else
+                builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Config.ConnectionString));
 
             builder.Services.AddAuthorization();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
