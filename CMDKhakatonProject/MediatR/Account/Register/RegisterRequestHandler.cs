@@ -44,7 +44,7 @@ namespace CMDKhakatonProject.MediatR.Account
                 Id = Guid.NewGuid(),
                 UserName = request.Username,
                 Email = request.Email,
-                PhotoBase64 = _photoRepository.UploadAsBase64(request.BannerPhoto)
+                PhotoBase64 = request.BannerPhotoBase64
             };
 
             object error = new object();
@@ -81,8 +81,8 @@ namespace CMDKhakatonProject.MediatR.Account
                 {
                     Id = registeringUser.Id,
                     Name = request.Username,
-                    LogoBase64 = _photoRepository.UploadAsBase64(request.LogoPhoto),
-                    PhotoBase64 = _photoRepository.UploadAsBase64(request.BannerPhoto),
+                    LogoBase64 = request.LogoPhotoBase64,
+                    PhotoBase64 = request.BannerPhotoBase64,
                     Address = request.Address
                 };
 

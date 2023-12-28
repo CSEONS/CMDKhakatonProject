@@ -16,7 +16,7 @@ namespace CMDKhakatonProject.MediatR.Account
         [Required]
         public string Role { get; set; }
         public string? Address { get; set; }
-        public IFormFile? BannerPhoto { get; set; }
-        public IFormFile? LogoPhoto { get; set; }
+        public string? BannerPhotoBase64 { get; set; }
+        public string? LogoPhotoBase64 { get; set; }
     }
 }
