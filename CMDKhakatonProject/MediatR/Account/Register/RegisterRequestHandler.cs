@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CMDKhakatonProject.Domain.Entities;
+using CMDKhakatonProject.Domain.Interfaces;
 using CMDKhakatonProject.Domain.Response;
 using CMDKhakatonProject.Service;
 using CMDKhakatonProject.Service.Interfaces;
@@ -12,14 +13,14 @@ namespace CMDKhakatonProject.MediatR.Account
     public class RequestRequestHandler : IRequestHandler<RegisterRequest, IActionResult>
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
+        private readonly IRepository<Restaurant> _restaurantsRepository;
         private readonly IDatabaseService _databaseService;
         private readonly IMapper _mapper;
 
-        public RequestRequestHandler(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IDatabaseService databaseService, IMapper mapper)
+        public RequestRequestHandler(UserManager<AppUser> userManager, IRepository<Restaurant> restaurantRepository, IDatabaseService databaseService, IMapper mapper)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
+            _restaurantsRepository = restaurantRepository;
             _databaseService = databaseService;
             _mapper = mapper;
         }
@@ -67,7 +68,18 @@ namespace CMDKhakatonProject.MediatR.Account
                 return new BadRequestObjectResult(error);
             }
 
+            //TODO: Сделать тут рефактор
+            #region TODO
+            if (request.Type == "restaurant")
+            {
+                Restaurant restourant = new()
+                {
+                    Id = registeringUser.Id
+                };
 
+                _restaurantsRepository.Add(restourant);
+            }
+            #endregion
 
             var userViewModel = _mapper.Map<AppUser, ViewModels.AppUser>(registeringUser);
 

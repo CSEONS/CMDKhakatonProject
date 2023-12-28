@@ -1,5 +1,6 @@
 ﻿using CMDKhakatonProject.Domain.Entities;
 using CMDKhakatonProject.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace CMDKhakatonProject.Domain.Repositories.EF
 {
@@ -12,15 +13,15 @@ namespace CMDKhakatonProject.Domain.Repositories.EF
             _context = context;
         }
 
-        public void Add(Dish restourant)
+        public void Add(Dish dish)
         {
-            _context.AddAsync(restourant);
+            _context.Dishes.Add(dish);
             _context.SaveChanges();
         }
 
         public List<Dish> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Dishes.ToList();
         }
 
         public List<Dish> GetAllEager()

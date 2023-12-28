@@ -11,16 +11,16 @@ namespace CMDKhakatonProject.Domain
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<AppUser> AppUsers { get; set; }
-        public DbSet<Restourant> Restournats { get; set; }
+        public DbSet<Restaurant> Restournats { get; set; }
         public DbSet<Courier> Couriers { get; set; }
         public DbSet<Dish> Dishes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Restourant>()
-                .HasMany(r => r.Dishes)
-                .WithOne(d => d.Restourant)
-                .HasForeignKey(d => d.Id);
+            builder.Entity<Dish>()
+                .HasOne(d => d.Restourant) // Указываем, что Dish имеет один Restourant
+                .WithMany(r => r.Dishes) // Указываем, что Restourant имеет много Dish
+                .HasForeignKey(d => d.RestourantId); // Указываем внешний ключ
 
             base.OnModelCreating(builder);
         }

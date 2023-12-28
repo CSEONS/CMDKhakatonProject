@@ -14,14 +14,21 @@ namespace CMDKhakatonProject.Domain.Repositories.Photo
             }
 
             string uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
-            string uploadPath = Path.Combine(_uploadDirectory, uniqueFileName);
+            string uploadDirectory = Path.Combine(_uploadDirectory, "photos");
+
+            if (!Directory.Exists(uploadDirectory))
+            {
+                Directory.CreateDirectory(uploadDirectory);
+            }
+
+            string uploadPath = Path.Combine(uploadDirectory, uniqueFileName);
 
             using (var fileStream = new FileStream(uploadPath, FileMode.Create))
             {
                 photo.CopyTo(fileStream);
             }
 
-            return uploadPath;
+            return Path.GetFullPath(uploadPath);
         }
 
         public void Delete(string photoPath)

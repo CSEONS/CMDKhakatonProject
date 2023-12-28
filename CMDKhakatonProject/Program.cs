@@ -43,7 +43,7 @@ namespace VolgaIt
             builder.Services.AddScoped<IPhotoRepository, PhotoRepository>();
 
             builder.Services.AddTransient<IRepository<Courier>, EFCourierRepository>();
-            builder.Services.AddTransient<IRepository<Restourant>, EFRestourantRepository>();
+            builder.Services.AddTransient<IRepository<Restaurant>, EFRestourantRepository>();
             builder.Services.AddTransient<IRepository<Dish>, EFDishRepository>();
 
             builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>(setup => { })

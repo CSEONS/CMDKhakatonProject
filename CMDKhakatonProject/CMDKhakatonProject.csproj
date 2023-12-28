@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\" />
-    <Folder Include="AutoMapper\Models\" />
   </ItemGroup>
 
 </Project>

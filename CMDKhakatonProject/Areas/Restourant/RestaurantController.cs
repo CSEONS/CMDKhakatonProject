@@ -16,15 +16,26 @@ namespace CMDKhakatonProject.Areas.Restourant
         }
 
         [HttpGet("DishList")]
-        public async Task<IActionResult> GetDishList([FromBody] GetDishListRequest request)
+        public async Task<IActionResult> GetDishList([FromQuery] int start, [FromQuery] int count)
         {
+            GetDishListRequest request = new()
+            {
+                Start = start,
+                Count = count
+            };
+
             return await _mediator.Send(request);
         }
 
         [HttpGet("DishList/{restaurantId}")]
-        public async Task<IActionResult> GetRestaurantDishList([FromRoute] Guid restaurantId, [FromBody] GetRestaurantDishListRequest request)
+        public async Task<IActionResult> GetRestaurantDishList([FromRoute] Guid restaurantId, [FromQuery] int start, [FromQuery] int count)
         {
-            request.RestaurantId = restaurantId;
+            GetRestaurantDishListRequest request = new()
+            {
+                RestaurantId = restaurantId,
+                Start = start,
+                Count = count
+            };
 
             return await _mediator.Send(request);
         }

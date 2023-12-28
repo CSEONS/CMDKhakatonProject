@@ -1,0 +1,2 @@
+cd ./CMDKhakatonProject
+dotnet run

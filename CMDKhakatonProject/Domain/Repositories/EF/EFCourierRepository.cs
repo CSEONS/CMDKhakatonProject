@@ -5,6 +5,12 @@ namespace CMDKhakatonProject.Domain.Repositories.EF
 {
     public class EFCourierRepository : IRepository<Courier>
     {
+        private readonly IRepository<Courier> _courierRepository;
+
+        public EFCourierRepository()
+        {
+            
+        }
         public void Add(Courier restourant)
         {
             throw new NotImplementedException();
@@ -12,7 +18,7 @@ namespace CMDKhakatonProject.Domain.Repositories.EF
 
         public List<Courier> GetAll()
         {
-            throw new NotImplementedException();
+            return _courierRepository.GetAll();
         }
 
         public List<Courier> GetAllEager()

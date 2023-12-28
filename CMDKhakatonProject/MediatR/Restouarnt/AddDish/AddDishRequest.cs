@@ -29,7 +29,6 @@ namespace CMDKhakatonProject.MediatR.Restouarnt
         public double CookinTime { get; set; }
         #region Attribute
         [Required]
-        [MinLength(1, ErrorMessage = "Please select at least one file.")]
         #endregion
         public IFormFile PreviewPhoto { get; set; }
         #region Attribute

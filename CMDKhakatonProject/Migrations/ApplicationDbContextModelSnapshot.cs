@@ -107,6 +107,7 @@ namespace CMDKhakatonProject.Migrations
             modelBuilder.Entity("CMDKhakatonProject.Domain.Entities.Dish", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<double>("CookinTime")
@@ -131,37 +132,35 @@ namespace CMDKhakatonProject.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
 
-                    b.Property<Guid>("RestourantId")
+                    b.Property<Guid?>("RestourantId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RestourantId");
+
                     b.ToTable("Dishes");
                 });
 
-            modelBuilder.Entity("CMDKhakatonProject.Domain.Entities.Restourant", b =>
+            modelBuilder.Entity("CMDKhakatonProject.Domain.Entities.Restaurant", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LogoUrl")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("PhotoUrl")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Rating")
+                    b.Property<decimal?>("Rating")
                         .HasColumnType("numeric");
 
                     b.HasKey("Id");
@@ -301,11 +300,9 @@ namespace CMDKhakatonProject.Migrations
 
             modelBuilder.Entity("CMDKhakatonProject.Domain.Entities.Dish", b =>
                 {
-                    b.HasOne("CMDKhakatonProject.Domain.Entities.Restourant", "Restourant")
+                    b.HasOne("CMDKhakatonProject.Domain.Entities.Restaurant", "Restourant")
                         .WithMany("Dishes")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RestourantId");
 
                     b.Navigation("Restourant");
                 });
@@ -361,7 +358,7 @@ namespace CMDKhakatonProject.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CMDKhakatonProject.Domain.Entities.Restourant", b =>
+            modelBuilder.Entity("CMDKhakatonProject.Domain.Entities.Restaurant", b =>
                 {
                     b.Navigation("Dishes");
                 });

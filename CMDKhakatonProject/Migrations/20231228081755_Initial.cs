@@ -69,11 +69,11 @@ namespace CMDKhakatonProject.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    PhotoUrl = table.Column<string>(type: "text", nullable: false),
-                    LogoUrl = table.Column<string>(type: "text", nullable: false),
-                    Rating = table.Column<decimal>(type: "numeric", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false)
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    PhotoUrl = table.Column<string>(type: "text", nullable: true),
+                    LogoUrl = table.Column<string>(type: "text", nullable: true),
+                    Rating = table.Column<decimal>(type: "numeric", nullable: true),
+                    Address = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -191,7 +191,7 @@ namespace CMDKhakatonProject.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    RestourantId = table.Column<Guid>(type: "uuid", nullable: false),
+                    RestourantId = table.Column<Guid>(type: "uuid", nullable: true),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<double>(type: "double precision", nullable: false),
@@ -203,11 +203,10 @@ namespace CMDKhakatonProject.Migrations
                 {
                     table.PrimaryKey("PK_Dishes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Dishes_Restournats_Id",
-                        column: x => x.Id,
+                        name: "FK_Dishes_Restournats_RestourantId",
+                        column: x => x.RestourantId,
                         principalTable: "Restournats",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -246,6 +245,11 @@ namespace CMDKhakatonProject.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dishes_RestourantId",
+                table: "Dishes",
+                column: "RestourantId");
         }
 
         /// <inheritdoc />
