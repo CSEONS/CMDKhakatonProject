@@ -91,7 +91,7 @@ namespace VolgaIt
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseCors("AllowSpecificOrigin");
+            app.UseCors();
 
             app.UseHttpsRedirection();
 

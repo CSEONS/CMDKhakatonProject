@@ -81,6 +81,18 @@ namespace CMDKhakatonProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tags",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tags", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -210,26 +222,53 @@ namespace CMDKhakatonProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
+                name: "DishOrders",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     OwnerId = table.Column<Guid>(type: "uuid", nullable: false),
-                    DishId = table.Column<Guid>(type: "uuid", nullable: false)
+                    DishId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Amount = table.Column<int>(type: "integer", nullable: false),
+                    Status = table.Column<int>(type: "integer", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.PrimaryKey("PK_DishOrders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_AspNetUsers_OwnerId",
+                        name: "FK_DishOrders_AspNetUsers_OwnerId",
                         column: x => x.OwnerId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Orders_Dishes_DishId",
+                        name: "FK_DishOrders_Dishes_DishId",
                         column: x => x.DishId,
                         principalTable: "Dishes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DishTag",
+                columns: table => new
+                {
+                    DishId = table.Column<Guid>(type: "uuid", nullable: false),
+                    TagsId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DishTag", x => new { x.DishId, x.TagsId });
+                    table.ForeignKey(
+                        name: "FK_DishTag_Dishes_DishId",
+                        column: x => x.DishId,
+                        principalTable: "Dishes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DishTag_Tags_TagsId",
+                        column: x => x.TagsId,
+                        principalTable: "Tags",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -277,14 +316,19 @@ namespace CMDKhakatonProject.Migrations
                 column: "RestourantId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_DishId",
-                table: "Orders",
+                name: "IX_DishOrders_DishId",
+                table: "DishOrders",
                 column: "DishId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_OwnerId",
-                table: "Orders",
+                name: "IX_DishOrders_OwnerId",
+                table: "DishOrders",
                 column: "OwnerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DishTag_TagsId",
+                table: "DishTag",
+                column: "TagsId");
         }
 
         /// <inheritdoc />
@@ -309,7 +353,10 @@ namespace CMDKhakatonProject.Migrations
                 name: "Couriers");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "DishOrders");
+
+            migrationBuilder.DropTable(
+                name: "DishTag");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -319,6 +366,9 @@ namespace CMDKhakatonProject.Migrations
 
             migrationBuilder.DropTable(
                 name: "Dishes");
+
+            migrationBuilder.DropTable(
+                name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "Restournats");

@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CMDKhakatonProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231228093152_Initial")]
+    [Migration("20231228130547_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -151,11 +151,20 @@ namespace CMDKhakatonProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
                     b.Property<Guid>("DishId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("OwnerId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -163,7 +172,7 @@ namespace CMDKhakatonProject.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("DishOrders");
                 });
 
             modelBuilder.Entity("CMDKhakatonProject.Domain.Entities.Restaurant", b =>
@@ -190,6 +199,36 @@ namespace CMDKhakatonProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Restournats");
+                });
+
+            modelBuilder.Entity("CMDKhakatonProject.Domain.Entities.Tag", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("DishTag", b =>
+                {
+                    b.Property<Guid>("DishId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("TagsId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("DishId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("DishTag");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -348,6 +387,21 @@ namespace CMDKhakatonProject.Migrations
                     b.Navigation("Dish");
 
                     b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("DishTag", b =>
+                {
+                    b.HasOne("CMDKhakatonProject.Domain.Entities.Dish", null)
+                        .WithMany()
+                        .HasForeignKey("DishId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CMDKhakatonProject.Domain.Entities.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
