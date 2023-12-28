@@ -21,8 +21,8 @@ namespace CMDKhakatonProject.Domain.Entities
         public string PhotosJSON
         {
             get { return JsonConvert.SerializeObject(PreviewPhoto); }
-            set { PhotosUrls = JsonConvert.DeserializeObject<string[]>(value); }
+            set { PhotosBase64 = JsonConvert.DeserializeObject<string[]>(value); }
         }
-        public string[] PhotosUrls { get; set; }
+        public string[] PhotosBase64 { get; set; }
     }
 }

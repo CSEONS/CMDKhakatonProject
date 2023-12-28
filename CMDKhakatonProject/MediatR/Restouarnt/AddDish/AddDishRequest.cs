@@ -27,6 +27,10 @@ namespace CMDKhakatonProject.MediatR.Restouarnt
         [PositiveNumber(ErrorMessage = $"Value {nameof(CookinTime)} can be positive.")]
         #endregion
         public double CookinTime { get; set; }
+        #region Attribute 
+        [Required]
+        #endregion
+        public double Calories { get; set; }
         #region Attribute
         [Required]
         #endregion

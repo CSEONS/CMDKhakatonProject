@@ -2,8 +2,7 @@
 {
     public interface IPhotoRepository
     {
-        string Upload(IFormFile file);
-        string[] Upload(IFormFile[] files);
-        void Delete(string url);
+        string UploadAsBase64(IFormFile file);
+        string[] UploadAsBase64(IFormFile[] file);
     }
 }

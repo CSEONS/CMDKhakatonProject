@@ -16,13 +16,15 @@ namespace CMDKhakatonProject.MediatR.Account
         private readonly IRepository<Restaurant> _restaurantsRepository;
         private readonly IDatabaseService _databaseService;
         private readonly IMapper _mapper;
+        private readonly IPhotoRepository _photoRepository;
 
-        public RequestRequestHandler(UserManager<AppUser> userManager, IRepository<Restaurant> restaurantRepository, IDatabaseService databaseService, IMapper mapper)
+        public RequestRequestHandler(UserManager<AppUser> userManager, IRepository<Restaurant> restaurantRepository, IDatabaseService databaseService, IMapper mapper, IPhotoRepository photoRepository)
         {
             _userManager = userManager;
             _restaurantsRepository = restaurantRepository;
             _databaseService = databaseService;
             _mapper = mapper;
+            _photoRepository = photoRepository;
         }
 
         public async Task<IActionResult> Handle(RegisterRequest request, CancellationToken cancellationToken)
@@ -35,11 +37,14 @@ namespace CMDKhakatonProject.MediatR.Account
 
             await _databaseService.BeginTransactionAsync();
 
+
+
             AppUser registeringUser = new AppUser
             {
                 Id = Guid.NewGuid(),
                 UserName = request.Username,
                 Email = request.Email,
+                PhotoBase64 = _photoRepository.UploadAsBase64(request.BannerPhoto)
             };
 
             object error = new object();
@@ -74,7 +79,11 @@ namespace CMDKhakatonProject.MediatR.Account
             {
                 Restaurant restourant = new()
                 {
-                    Id = registeringUser.Id
+                    Id = registeringUser.Id,
+                    Name = request.Username,
+                    LogoBase64 = _photoRepository.UploadAsBase64(request.LogoPhoto),
+                    PhotoBase64 = _photoRepository.UploadAsBase64(request.BannerPhoto),
+                    Address = request.Address
                 };
 
                 _restaurantsRepository.Add(restourant);

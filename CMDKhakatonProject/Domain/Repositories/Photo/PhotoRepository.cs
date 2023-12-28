@@ -6,49 +6,33 @@ namespace CMDKhakatonProject.Domain.Repositories.Photo
     {
         private string _uploadDirectory = "photos";
 
-        public string Upload(IFormFile photo)
+        public string UploadAsBase64(IFormFile photo)
         {
-            if (photo == null || photo.Length == 0)
             {
-                throw new ArgumentException("Photo is required");
-            }
+                if (photo == null)
+                {
+                    throw new ArgumentNullException(nameof(photo));
+                }
 
-            string uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
-            string uploadDirectory = Path.Combine(_uploadDirectory, "photos");
-
-            if (!Directory.Exists(uploadDirectory))
-            {
-                Directory.CreateDirectory(uploadDirectory);
-            }
-
-            string uploadPath = Path.Combine(uploadDirectory, uniqueFileName);
-
-            using (var fileStream = new FileStream(uploadPath, FileMode.Create))
-            {
-                photo.CopyTo(fileStream);
-            }
-
-            return Path.GetFullPath(uploadPath);
-        }
-
-        public void Delete(string photoPath)
-        {
-            if (File.Exists(photoPath))
-            {
-                File.Delete(photoPath);
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    photo.CopyTo(memoryStream);
+                    byte[] fileBytes = memoryStream.ToArray();
+                    return Convert.ToBase64String(fileBytes);
+                }
             }
         }
 
-        public string[] Upload(IFormFile[] files)
+        public string[] UploadAsBase64(IFormFile[] file)
         {
-            string[] urls = new string[files.Length];
+            string[] photos = new string[file.Length];
 
-            for (int i = 0; i < files.Length; i++)
+            for (int i = 0; i < file.Length; i++)
             {
-                urls[i] = Upload(files[i]);
+                photos[i] = UploadAsBase64(file[i]);
             }
 
-            return urls;
+            return photos;
         }
     }
 }
