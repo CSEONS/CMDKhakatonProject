@@ -70,7 +70,7 @@ namespace CMDKhakatonProject.MediatR.Account
 
             //TODO: Сделать тут рефактор
             #region TODO
-            if (request.Type == "restaurant")
+            if (request.Role == "restaurant")
             {
                 Restaurant restourant = new()
                 {

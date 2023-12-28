@@ -209,6 +209,31 @@ namespace CMDKhakatonProject.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    OwnerId = table.Column<Guid>(type: "uuid", nullable: false),
+                    DishId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_OwnerId",
+                        column: x => x.OwnerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Dishes_DishId",
+                        column: x => x.DishId,
+                        principalTable: "Dishes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -250,6 +275,16 @@ namespace CMDKhakatonProject.Migrations
                 name: "IX_Dishes_RestourantId",
                 table: "Dishes",
                 column: "RestourantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_DishId",
+                table: "Orders",
+                column: "DishId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_OwnerId",
+                table: "Orders",
+                column: "OwnerId");
         }
 
         /// <inheritdoc />
@@ -274,13 +309,16 @@ namespace CMDKhakatonProject.Migrations
                 name: "Couriers");
 
             migrationBuilder.DropTable(
-                name: "Dishes");
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Dishes");
 
             migrationBuilder.DropTable(
                 name: "Restournats");

@@ -27,6 +27,8 @@
         public static string RentDeleted() => "Rent deleted";
         public static string YouTranportOwner() => "You are owner of this transport.";
         public static string RentEnError() => "Rent alredy ended.";
+        public static string DishOrderNotFound() => "Dish order not found";
+        public static string DishOrderDeleted() => "Dish order deleted";
     }
 
 }

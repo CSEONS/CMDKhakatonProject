@@ -16,6 +16,11 @@ namespace CMDKhakatonProject.Domain.Repositories.EF
             throw new NotImplementedException();
         }
 
+        public void Delete(Courier entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Courier> GetAll()
         {
             return _courierRepository.GetAll();

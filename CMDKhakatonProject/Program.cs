@@ -45,6 +45,7 @@ namespace VolgaIt
             builder.Services.AddTransient<IRepository<Courier>, EFCourierRepository>();
             builder.Services.AddTransient<IRepository<Restaurant>, EFRestourantRepository>();
             builder.Services.AddTransient<IRepository<Dish>, EFDishRepository>();
+            builder.Services.AddTransient<IRepository<DishOrder>, EFDishOrderRepository>();
 
             builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>(setup => { })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -66,6 +67,19 @@ namespace VolgaIt
                     };
                 });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin", builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod()
+                           .WithExposedHeaders("Content-Disposition")
+                           .SetPreflightMaxAge(TimeSpan.FromSeconds(2520));
+                });
+            });
+
+
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -76,6 +90,8 @@ namespace VolgaIt
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseCors("AllowSpecificOrigin");
 
             app.UseHttpsRedirection();
 

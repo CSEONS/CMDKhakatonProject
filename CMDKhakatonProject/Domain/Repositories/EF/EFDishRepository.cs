@@ -19,6 +19,11 @@ namespace CMDKhakatonProject.Domain.Repositories.EF
             _context.SaveChanges();
         }
 
+        public void Delete(Dish entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Dish> GetAll()
         {
             return _context.Dishes.ToList();

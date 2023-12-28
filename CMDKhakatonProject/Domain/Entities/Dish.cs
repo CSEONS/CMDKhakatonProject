@@ -13,6 +13,7 @@ namespace CMDKhakatonProject.Domain.Entities
         public string Description { get; set; }
         public double Price { get; set; }
         public double CookinTime { get; set; } 
+        public virtual ICollection<Tag> Tags { get; set; }
         public string PreviewPhoto { get; set; }
         #region Attribute
         [NotMapped]

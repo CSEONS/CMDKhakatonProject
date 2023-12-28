@@ -142,6 +142,27 @@ namespace CMDKhakatonProject.Migrations
                     b.ToTable("Dishes");
                 });
 
+            modelBuilder.Entity("CMDKhakatonProject.Domain.Entities.DishOrder", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("DishId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DishId");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("CMDKhakatonProject.Domain.Entities.Restaurant", b =>
                 {
                     b.Property<Guid>("Id")
@@ -307,6 +328,25 @@ namespace CMDKhakatonProject.Migrations
                     b.Navigation("Restourant");
                 });
 
+            modelBuilder.Entity("CMDKhakatonProject.Domain.Entities.DishOrder", b =>
+                {
+                    b.HasOne("CMDKhakatonProject.Domain.Entities.Dish", "Dish")
+                        .WithMany()
+                        .HasForeignKey("DishId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CMDKhakatonProject.Domain.Entities.AppUser", "Owner")
+                        .WithMany("DishOrders")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dish");
+
+                    b.Navigation("Owner");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
@@ -356,6 +396,11 @@ namespace CMDKhakatonProject.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CMDKhakatonProject.Domain.Entities.AppUser", b =>
+                {
+                    b.Navigation("DishOrders");
                 });
 
             modelBuilder.Entity("CMDKhakatonProject.Domain.Entities.Restaurant", b =>
