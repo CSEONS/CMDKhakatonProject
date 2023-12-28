@@ -323,12 +323,12 @@ namespace CMDKhakatonProject.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccesToken", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PhotoBase64", "RefreshToken", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("8c62f6f8-1371-4b46-a365-cb71c8454aa1"), null, 0, "c91b4714-3264-4849-af74-552f08219ee7", null, false, false, null, null, null, "AQAAAAIAAYagAAAAEMwdXmPGDdRokSwloEwq0RWbt+16nAcHcqoy7ZPF6IRa0VexIeAhJkNcAo0Udz9sxA==", null, false, null, null, null, false, "User" });
+                values: new object[] { new Guid("7b37fff7-4336-4fc3-bf33-ead260565cc7"), null, 0, "94fd451f-c1cc-4e59-9f46-c18c7d471f6a", null, false, false, null, null, null, "AQAAAAIAAYagAAAAEFg4lIkcOOHuvYAyFO9YnWbVIqDdRJ9gGcbA9gETkG2riyQxiJ8nBO8vFbfrTBYsVg==", null, false, null, null, null, false, "User" });
 
             migrationBuilder.InsertData(
                 table: "Restournats",
                 columns: new[] { "Id", "Address", "LogoBase64", "Name", "PhotoBase64", "Rating" },
-                values: new object[] { new Guid("8c62f6f8-1371-4b46-a365-cb71c8454aa1"), null, null, null, null, null });
+                values: new object[] { new Guid("7b37fff7-4336-4fc3-bf33-ead260565cc7"), null, null, null, null, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

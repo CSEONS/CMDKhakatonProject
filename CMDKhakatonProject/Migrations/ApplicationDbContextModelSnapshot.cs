@@ -98,12 +98,12 @@ namespace CMDKhakatonProject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8c62f6f8-1371-4b46-a365-cb71c8454aa1"),
+                            Id = new Guid("7b37fff7-4336-4fc3-bf33-ead260565cc7"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c91b4714-3264-4849-af74-552f08219ee7",
+                            ConcurrencyStamp = "94fd451f-c1cc-4e59-9f46-c18c7d471f6a",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEMwdXmPGDdRokSwloEwq0RWbt+16nAcHcqoy7ZPF6IRa0VexIeAhJkNcAo0Udz9sxA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFg4lIkcOOHuvYAyFO9YnWbVIqDdRJ9gGcbA9gETkG2riyQxiJ8nBO8vFbfrTBYsVg==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "User"
@@ -253,7 +253,7 @@ namespace CMDKhakatonProject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8c62f6f8-1371-4b46-a365-cb71c8454aa1")
+                            Id = new Guid("7b37fff7-4336-4fc3-bf33-ead260565cc7")
                         });
                 });
 

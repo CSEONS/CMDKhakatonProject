@@ -44,7 +44,7 @@ namespace CMDKhakatonProject.MediatR.Account
 
             await _userManager.UpdateAsync(user);
 
-            return new OkObjectResult(new { accesToken = user.AccesToken, refreshToken = user.RefreshToken });
+            return new OkObjectResult(new {userId = user.Id, accesToken = user.AccesToken, refreshToken = user.RefreshToken});
         }
 
     }
