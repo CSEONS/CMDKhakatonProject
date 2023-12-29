@@ -22,12 +22,12 @@ namespace CMDKhakatonProject.MediatR.User
 
         public async Task<IActionResult> Handle(MeRequest request, CancellationToken cancellationToken)
         {
-            return new OkObjectResult(new ViewModels.AppUser()
+            /*return new OkObjectResult(new ViewModels.AppUser()
             {
                 Email = "em@mail.com",
                 Role = "restaurant",
                 UserName = "User",
-            });
+            });*/
 
             var user = await _userManager.GetUserAsync(request.User);
             if (user is null)

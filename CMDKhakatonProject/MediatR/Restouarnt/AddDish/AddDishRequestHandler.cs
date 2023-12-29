@@ -30,13 +30,13 @@ namespace CMDKhakatonProject.MediatR.Restouarnt
 
             var user = await _userManager.GetUserAsync(request.User);
 
-            if (user is null)
-                return new BadRequestObjectResult(ActionMessages.UserNotFound());
+            /*if (user is null)
+                return new BadRequestObjectResult(ActionMessages.UserNotFound());*/
 
             //dish.PhotosBase64 = _photoRepository.UploadAsBase64(request.Photos);
             dish.PreviewPhoto = (request.PreviewPhotoBase64);
 
-            dish.RestourantId = user.Id;
+            dish.RestourantId = user?.Id;
 
             _dishRepository.Add(dish);
 

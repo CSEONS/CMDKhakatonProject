@@ -16,12 +16,29 @@ namespace CMDKhakatonProject.MediatR.Restouarnt
 
         public async Task<IActionResult> Handle(GetRestaurantDishListRequest request, CancellationToken cancellationToken)
         {
-            List<Dish> dishes = _dishRepository
-                                .GetAll()
-                                .Where(d => d.RestourantId == request.RestaurantId)
-                                .Skip(request.Start)
-                                .Take(request.Count)
-                                .ToList();
+            var dishes = _dishRepository
+                .GetAll()
+                .Where(d => d.RestourantId == request.RestaurantId);
+
+            if (request.MinPrice > 0)
+                dishes = dishes.Where(d => d.Price > request.MinPrice);
+
+            if (request.MaxPrice > 0)
+                dishes = dishes.Where(d => d.Price < request.MaxPrice);
+
+            if (request.MaxRating > 0)
+                dishes = dishes.Where(d => d.Rating < request.MaxRating);
+
+            if (request.MinPrice > 0)
+                dishes = dishes.Where(d => d.Rating > request.MinPrice);
+
+            if (request.Tgas?.Length > 0)
+                dishes = dishes.Where(d => d.Tags.Select(t => t.Name).Intersect(request.Tgas).Any());
+
+            dishes = dishes
+                .Skip(request.Start)
+                .Take(request.Count)
+                .ToList();
 
             return new OkObjectResult(dishes);
         }

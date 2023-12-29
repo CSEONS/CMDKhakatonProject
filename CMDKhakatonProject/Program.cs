@@ -49,7 +49,7 @@ namespace VolgaIt
             builder.Services.AddTransient<IRepository<Reservation>, EFReservationRepository>();
             builder.Services.AddTransient<IRepository<Present>, EFPresentRepository>();
 
-            builder.Services.AddIdentity<AppUser, IdentityRole>()
+            builder.Services.AddIdentity<AppUser, IdentityRole>(setup => { })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
