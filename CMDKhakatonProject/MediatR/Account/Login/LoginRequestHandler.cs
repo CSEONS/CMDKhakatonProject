@@ -11,14 +11,12 @@ namespace CMDKhakatonProject.MediatR.Account
     public class LoginRequestHandler : IRequestHandler<LoginRequest, IActionResult>
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IJwtGenerator _jwtGenerator;
 
-        public LoginRequestHandler(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager, IJwtGenerator JwtGenerator)
+        public LoginRequestHandler(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IJwtGenerator JwtGenerator)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
             _signInManager = signInManager;
             _jwtGenerator = JwtGenerator;
         }
