@@ -15,7 +15,7 @@ namespace CMDKhakatonProject.Domain.Entities
         public double CookinTime { get; set; } 
         public virtual ICollection<Tag> Tags { get; set; }
         public string PreviewPhoto { get; set; }
-        #region Attribute
+        /*#region Attribute
         [NotMapped]
         #endregion
         public string PhotosJSON
@@ -23,6 +23,6 @@ namespace CMDKhakatonProject.Domain.Entities
             get { return JsonConvert.SerializeObject(PreviewPhoto); }
             set { PhotosBase64 = JsonConvert.DeserializeObject<string[]>(value); }
         }
-        public string[] PhotosBase64 { get; set; }
+        public string[] PhotosBase64 { get; set; }*/
     }
 }

@@ -33,7 +33,7 @@ namespace CMDKhakatonProject.MediatR.Restouarnt
             if (user is null)
                 return new BadRequestObjectResult(ActionMessages.UserNotFound());
 
-            dish.PhotosBase64 = _photoRepository.UploadAsBase64(request.Photos);
+            //dish.PhotosBase64 = _photoRepository.UploadAsBase64(request.Photos);
             dish.PreviewPhoto = _photoRepository.UploadAsBase64(request.PreviewPhoto);
 
             dish.RestourantId = user.Id;

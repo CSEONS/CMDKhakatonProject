@@ -8,7 +8,6 @@
         public Guid ReserverId { get; set; }
         public AppUser Reserver { get; set; }
         public string Phone { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public DateTime DateTime { get; set; }
     }
 }

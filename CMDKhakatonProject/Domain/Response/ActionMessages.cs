@@ -29,6 +29,7 @@
         public static string RentEnError() => "Rent alredy ended.";
         public static string DishOrderNotFound() => "Dish order not found";
         public static string DishOrderDeleted() => "Dish order deleted";
+        public static string Reserve() => "Table reserved.";
     }
 
 }

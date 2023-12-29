@@ -54,5 +54,16 @@ namespace CMDKhakatonProject.Areas.User
 
             return await _mediator.Send(request);
         }
+
+        [HttpGet("Me")]
+        public async Task<IActionResult> GetMe()
+        {
+            MeRequest request = new()
+            {
+                User = User
+            };
+
+            return await _mediator.Send(request);
+        }
     }
 }
