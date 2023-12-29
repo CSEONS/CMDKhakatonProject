@@ -34,6 +34,7 @@ namespace CMDKhakatonProject.Domain
                 Id = appUser.Id,
             };
 
+
             builder.Entity<AppUser>()
                 .HasData(appUser);
 
