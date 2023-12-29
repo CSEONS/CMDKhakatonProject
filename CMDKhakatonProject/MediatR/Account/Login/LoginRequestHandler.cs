@@ -42,11 +42,9 @@ namespace CMDKhakatonProject.MediatR.Account
             user.AccesToken = _jwtGenerator.Generate(user, TimeSpan.FromMinutes(Config.AccesTokenExpiredTimePerMinute));
             user.RefreshToken = _jwtGenerator.Generate(user, TimeSpan.FromDays(Config.RefreshTokenExpiredTimePerDays));
 
-            var role = await _userManager.GetRolesAsync(user);
-
             await _userManager.UpdateAsync(user);
 
-            return new OkObjectResult(new {userId = user.Id, role = role.FirstOrDefault(), accesToken = user.AccesToken, refreshToken = user.RefreshToken});
+            return new OkObjectResult(new {userId = user.Id, role = user.Role, accesToken = user.AccesToken, refreshToken = user.RefreshToken});
         }
 
     }
