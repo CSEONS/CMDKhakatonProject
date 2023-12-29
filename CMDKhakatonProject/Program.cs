@@ -99,6 +99,7 @@ namespace VolgaIt
 
             app.MapControllers();
 
+
             app.Run();
         }
     }
