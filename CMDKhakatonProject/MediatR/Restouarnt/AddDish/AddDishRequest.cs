@@ -34,12 +34,12 @@ namespace CMDKhakatonProject.MediatR.Restouarnt
         #region Attribute
         [Required]
         #endregion
-        public IFormFile PreviewPhoto { get; set; }
+        public string? PreviewPhotoBase64 { get; set; }
         #region Attribute
         [Required]
         [MinLength(1, ErrorMessage = "Please select at least one file.")]
         #endregion
-        public IFormFile[] Photos { get; set; }
+        public string?[] PhotosBase64 { get; set; }
         #region Attribute
         [JsonIgnore]
         #endregion

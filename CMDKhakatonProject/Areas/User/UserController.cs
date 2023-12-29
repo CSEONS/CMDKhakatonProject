@@ -1,5 +1,6 @@
 ﻿using CMDKhakatonProject.MediatR.User;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CMDKhakatonProject.Areas.User
@@ -55,6 +56,7 @@ namespace CMDKhakatonProject.Areas.User
             return await _mediator.Send(request);
         }
 
+        [Authorize]
         [HttpGet("Me")]
         public async Task<IActionResult> GetMe()
         {
