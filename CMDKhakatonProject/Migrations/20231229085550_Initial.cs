@@ -326,19 +326,19 @@ namespace CMDKhakatonProject.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "5d519aed-5d26-4777-883a-dd1692ef5f88", null, "restaurant", "RESTAURANT" },
-                    { "5f41ee67-5017-4224-ba70-11cf9e0592bc", null, "user", "USER" }
+                    { "1126e220-479e-4183-87eb-45d38b9743ea", null, "user", "USER" },
+                    { "2fbf2772-46bb-40c2-bc33-2aff9cc9033c", null, "restaurant", "RESTAURANT" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccesToken", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PhotoBase64", "RefreshToken", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "aa5d767e-50c0-4e85-b1c7-c5f62322d222", null, 0, "a49f8cdb-ad1b-4362-8f7a-6d18ed8955e4", null, false, false, null, null, "USER", "AQAAAAIAAYagAAAAEHBCOMnxuyqqt9NSlzhwDRMKiOFUuNESNjkdGMhTSuJ/MKiI931ZsvXy+xUxMuG3ZA==", null, false, null, null, null, "9c87e117-4d08-4409-b357-3f5e56013592", false, "User" });
+                values: new object[] { "bcb39029-3314-49f0-a0c9-aacb1d0f12a0", null, 0, "ea71da0e-c4e9-4ac3-a6fe-cc06dfdd1407", null, false, false, null, null, "USER", "AQAAAAIAAYagAAAAEKvu/7JWfCXtxih9k/tqMPZ5Z/DKc2nmvqHX6BDCD30XEpjQXRsQoD/nA1mHCn+uvw==", null, false, null, null, "restaurant", "6922f59c-6524-40fb-bd54-e5929bb1c704", false, "User" });
 
             migrationBuilder.InsertData(
                 table: "Restournats",
                 columns: new[] { "Id", "Address", "LogoBase64", "Name", "PhotoBase64", "Rating" },
-                values: new object[] { "aa5d767e-50c0-4e85-b1c7-c5f62322d222", null, null, null, null, null });
+                values: new object[] { "bcb39029-3314-49f0-a0c9-aacb1d0f12a0", null, null, null, null, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

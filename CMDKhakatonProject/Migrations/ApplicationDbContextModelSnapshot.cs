@@ -100,15 +100,16 @@ namespace CMDKhakatonProject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "aa5d767e-50c0-4e85-b1c7-c5f62322d222",
+                            Id = "bcb39029-3314-49f0-a0c9-aacb1d0f12a0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a49f8cdb-ad1b-4362-8f7a-6d18ed8955e4",
+                            ConcurrencyStamp = "ea71da0e-c4e9-4ac3-a6fe-cc06dfdd1407",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHBCOMnxuyqqt9NSlzhwDRMKiOFUuNESNjkdGMhTSuJ/MKiI931ZsvXy+xUxMuG3ZA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKvu/7JWfCXtxih9k/tqMPZ5Z/DKc2nmvqHX6BDCD30XEpjQXRsQoD/nA1mHCn+uvw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9c87e117-4d08-4409-b357-3f5e56013592",
+                            Role = "restaurant",
+                            SecurityStamp = "6922f59c-6524-40fb-bd54-e5929bb1c704",
                             TwoFactorEnabled = false,
                             UserName = "User"
                         });
@@ -249,7 +250,7 @@ namespace CMDKhakatonProject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "aa5d767e-50c0-4e85-b1c7-c5f62322d222"
+                            Id = "bcb39029-3314-49f0-a0c9-aacb1d0f12a0"
                         });
                 });
 
@@ -324,13 +325,13 @@ namespace CMDKhakatonProject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5d519aed-5d26-4777-883a-dd1692ef5f88",
+                            Id = "2fbf2772-46bb-40c2-bc33-2aff9cc9033c",
                             Name = "restaurant",
                             NormalizedName = "RESTAURANT"
                         },
                         new
                         {
-                            Id = "5f41ee67-5017-4224-ba70-11cf9e0592bc",
+                            Id = "1126e220-479e-4183-87eb-45d38b9743ea",
                             Name = "user",
                             NormalizedName = "USER"
                         });

@@ -23,7 +23,7 @@ namespace CMDKhakatonProject.MediatR.Account
 
         public async Task<IActionResult> Handle(LoginRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.FindByNameAsync(request.Username);
+            var user = _userManager.Users.FirstOrDefault(u => u.UserName == request.Username);
 
             if (user is null)
                 return new BadRequestObjectResult(new { error = ActionMessages.UserNotFound() });
