@@ -73,10 +73,18 @@ namespace CMDKhakatonProject.MediatR.Account
                 return new BadRequestObjectResult(error);
             }
 
+
+
             //TODO: Сделать тут рефактор
             #region TODO
+            if (request.Role == "user")
+            {
+                await _userManager.AddToRoleAsync(registeringUser, "user");
+            }
             if (request.Role == "restaurant")
             {
+                await _userManager.AddToRoleAsync(registeringUser, "restaurant");
+
                 Restaurant restourant = new()
                 {
                     Id = registeringUser.Id,
