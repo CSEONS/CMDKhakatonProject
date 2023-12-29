@@ -32,11 +32,28 @@ namespace CMDKhakatonProject.Domain
                 Id = appUser.Id,
             };
 
+            List<IdentityRole<Guid>> roles = new()
+            {
+                new IdentityRole<Guid>()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "user"
+                },
+                new IdentityRole<Guid>()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "restaurant"
+                }
+            };
+
             builder.Entity<AppUser>()
                 .HasData(appUser);
 
             builder.Entity<Restaurant>()
                 .HasData(restaurant);
+
+            builder.Entity<IdentityRole<Guid>>()
+                .HasData(roles);
 
 
             builder.Entity<Dish>()
