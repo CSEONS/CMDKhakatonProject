@@ -11,12 +11,14 @@ namespace CMDKhakatonProject.MediatR.Account
     public class LoginRequestHandler : IRequestHandler<LoginRequest, IActionResult>
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IJwtGenerator _jwtGenerator;
 
-        public LoginRequestHandler(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IJwtGenerator JwtGenerator)
+        public LoginRequestHandler(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager, IJwtGenerator JwtGenerator)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _signInManager = signInManager;
             _jwtGenerator = JwtGenerator;
         }
@@ -42,9 +44,11 @@ namespace CMDKhakatonProject.MediatR.Account
             user.AccesToken = _jwtGenerator.Generate(user, TimeSpan.FromMinutes(Config.AccesTokenExpiredTimePerMinute));
             user.RefreshToken = _jwtGenerator.Generate(user, TimeSpan.FromDays(Config.RefreshTokenExpiredTimePerDays));
 
+            var role = await _userManager.GetRolesAsync(user);
+
             await _userManager.UpdateAsync(user);
 
-            return new OkObjectResult(new {userId = user.Id, accesToken = user.AccesToken, refreshToken = user.RefreshToken});
+            return new OkObjectResult(new {userId = user.Id, role = role.FirstOrDefault(), accesToken = user.AccesToken, refreshToken = user.RefreshToken});
         }
 
     }
