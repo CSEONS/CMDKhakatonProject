@@ -29,6 +29,7 @@ namespace CMDKhakatonProject.Domain
                 Role = "restaurant"
             };
 
+
             Restaurant restaurant = new()
             {
                 Id = appUser.Id,
