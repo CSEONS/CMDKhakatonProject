@@ -47,5 +47,13 @@ namespace CMDKhakatonProject.Areas.Restourant
 
             return await _mediator.Send(request);
         }
+
+        [HttpPost("Reserve")]
+        public async Task<IActionResult> Resere(ReserveRequest request)
+        {
+            request.User = User;
+
+            return await _mediator.Send(request);
+        }
     }
 }
