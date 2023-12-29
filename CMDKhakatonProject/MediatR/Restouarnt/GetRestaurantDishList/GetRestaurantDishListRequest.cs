@@ -6,7 +6,7 @@ namespace CMDKhakatonProject.MediatR.Restouarnt
 {
     public class GetRestaurantDishListRequest : IRequest<IActionResult>
     {
-        [JsonIgnore] public Guid RestaurantId { get; set; }
+        [JsonIgnore] public string RestaurantId { get; set; }
         public int Start { get; set; }
         public int Count { get; set; }
     }

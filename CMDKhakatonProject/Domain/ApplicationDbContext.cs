@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 
 namespace CMDKhakatonProject.Domain
 {
-    public class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>
+    public class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole, string>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
@@ -20,30 +20,17 @@ namespace CMDKhakatonProject.Domain
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            AppUser appUser = new() 
+            AppUser appUser = new()
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.NewGuid().ToString(),
                 UserName = "User",
-                PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "User_1")
+                NormalizedUserName = "USER",
+                PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "User95_1")
             };
 
             Restaurant restaurant = new()
             {
                 Id = appUser.Id,
-            };
-
-            List<IdentityRole<Guid>> roles = new()
-            {
-                new IdentityRole<Guid>()
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "user"
-                },
-                new IdentityRole<Guid>()
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "restaurant"
-                }
             };
 
             builder.Entity<AppUser>()
@@ -52,9 +39,11 @@ namespace CMDKhakatonProject.Domain
             builder.Entity<Restaurant>()
                 .HasData(restaurant);
 
-            builder.Entity<IdentityRole<Guid>>()
-                .HasData(roles);
-
+            builder.Entity<IdentityRole>().HasData
+            (
+                new IdentityRole { Id = Guid.NewGuid().ToString(), Name = "restaurant", NormalizedName = "RESTAURANT" },
+                new IdentityRole { Id = Guid.NewGuid().ToString(), Name = "user", NormalizedName = "USER" }
+            );
 
             builder.Entity<Dish>()
                 .HasOne(d => d.Restourant)
@@ -84,6 +73,7 @@ namespace CMDKhakatonProject.Domain
                 .HasOne(r => r.Table)
                 .WithMany()
                 .HasForeignKey(r => r.TableId);
+
 
             base.OnModelCreating(builder);
         }

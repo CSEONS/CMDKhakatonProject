@@ -3,9 +3,10 @@ using System.Security.Claims;
 
 namespace CMDKhakatonProject.Domain.Entities
 {
-    public class AppUser : IdentityUser<Guid>
+    public class AppUser : IdentityUser
     {
         public string? PhotoBase64 { get; set; }
+        public string? Role { get; set; }
         public virtual ICollection<DishOrder> DishOrders { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
         public string? AccesToken { get; set; }

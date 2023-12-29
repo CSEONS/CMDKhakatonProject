@@ -7,7 +7,7 @@ namespace CMDKhakatonProject.MediatR.User
 {
     public class DeleteDishFromBasketRequest : IRequest<IActionResult>
     {
-        public Guid OrderId { get; set; }
+        public string OrderId { get; set; }
         [JsonIgnore] public ClaimsPrincipal? User;
     }
 }

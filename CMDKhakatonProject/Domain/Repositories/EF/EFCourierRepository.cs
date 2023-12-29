@@ -36,7 +36,17 @@ namespace CMDKhakatonProject.Domain.Repositories.EF
             throw new NotImplementedException();
         }
 
+        public Courier GetById(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Courier GetByIdEager(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Courier GetByIdEager(string id)
         {
             throw new NotImplementedException();
         }

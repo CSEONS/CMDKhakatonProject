@@ -7,10 +7,11 @@ using CMDKhakatonProject.Service.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.Eventing.Reader;
 
 namespace CMDKhakatonProject.MediatR.Account
 {
-    public class RequestRequestHandler : IRequestHandler<RegisterRequest, IActionResult>
+    public class RegisterRequestHandler : IRequestHandler<RegisterRequest, IActionResult>
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IRepository<Restaurant> _restaurantsRepository;
@@ -18,7 +19,7 @@ namespace CMDKhakatonProject.MediatR.Account
         private readonly IMapper _mapper;
         private readonly IPhotoRepository _photoRepository;
 
-        public RequestRequestHandler(UserManager<AppUser> userManager, IRepository<Restaurant> restaurantRepository, IDatabaseService databaseService, IMapper mapper, IPhotoRepository photoRepository)
+        public RegisterRequestHandler(UserManager<AppUser> userManager, IRepository<Restaurant> restaurantRepository, IDatabaseService databaseService, IMapper mapper, IPhotoRepository photoRepository)
         {
             _userManager = userManager;
             _restaurantsRepository = restaurantRepository;
@@ -41,10 +42,11 @@ namespace CMDKhakatonProject.MediatR.Account
 
             AppUser registeringUser = new AppUser
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.NewGuid().ToString(),
                 UserName = request.Username,
                 Email = request.Email,
-                PhotoBase64 = request.BannerPhotoBase64
+                PhotoBase64 = request.BannerPhotoBase64,
+                Role = request.Role
             };
 
             object error = new object();
@@ -73,30 +75,7 @@ namespace CMDKhakatonProject.MediatR.Account
                 return new BadRequestObjectResult(error);
             }
 
-
-
-            //TODO: Сделать тут рефактор
-            #region TODO
-            if (request.Role == "user")
-            {
-                await _userManager.AddToRoleAsync(registeringUser, "user");
-            }
-            if (request.Role == "restaurant")
-            {
-                await _userManager.AddToRoleAsync(registeringUser, "restaurant");
-
-                Restaurant restourant = new()
-                {
-                    Id = registeringUser.Id,
-                    Name = request.Username,
-                    LogoBase64 = request.LogoPhotoBase64,
-                    PhotoBase64 = request.BannerPhotoBase64,
-                    Address = request.Address
-                };
-
-                _restaurantsRepository.Add(restourant);
-            }
-            #endregion
+            
 
             var userViewModel = _mapper.Map<AppUser, ViewModels.AppUser>(registeringUser);
 

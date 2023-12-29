@@ -33,12 +33,12 @@ namespace CMDKhakatonProject.Domain.Repositories.EF
             throw new NotImplementedException();
         }
 
-        public Present GetById(Guid id)
+        public Present GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Present GetByIdEager(Guid id)
+        public Present GetByIdEager(string id)
         {
             throw new NotImplementedException();
         }

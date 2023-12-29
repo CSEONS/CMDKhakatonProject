@@ -8,8 +8,8 @@ namespace CMDKhakatonProject.MediatR.Restouarnt
 {
     public class ReserveRequest : IRequest<IActionResult>
     {
-        public Guid UserId { get; set; }
-        public Guid TableId { get; set; }
+        public string UserId { get; set; }
+        public string TableId { get; set; }
         public Table Table { get; set; }
         public string Phone { get; set; }
         public DateTime DateTime { get; set; }

@@ -26,7 +26,7 @@ namespace CMDKhakatonProject.MediatR.User
 
             var dishOrder = new DishOrder
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.NewGuid().ToString(),
                 OwnerId = user.Id,
                 DishId = request.DishId,
                 Amount = request.Amont,

@@ -28,7 +28,7 @@ namespace CMDKhakatonProject.Areas.Restourant
         }
 
         [HttpGet("DishList/{restaurantId}")]
-        public async Task<IActionResult> GetRestaurantDishList([FromRoute] Guid restaurantId, [FromQuery] int start, [FromQuery] int count)
+        public async Task<IActionResult> GetRestaurantDishList([FromRoute] string restaurantId, [FromQuery] int start, [FromQuery] int count)
         {
             GetRestaurantDishListRequest request = new()
             {

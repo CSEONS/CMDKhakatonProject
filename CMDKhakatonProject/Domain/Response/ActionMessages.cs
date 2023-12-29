@@ -18,7 +18,7 @@
         public static string ParametrsMustGreaterZero(params string[] args) => $"The {string.Join(", ", args)} parametrs must be greater than zero.";
         public static string InvalidQueryParametrs() => "The \"start\" and \"count\" parameters must be greater than zero.";
         public static string UnknownTransportType() => "Unknown transport type";
-        public static string RentNotFound() => "Rent not found.";
+        public static string RoleNotFound() => "Role not found.";
         public static string AccesDined() => "Access denied.";
         public static string UnknownRentType() => "Unknown rent type";
         public static string TransportRented() => "Transport rented by another user.";

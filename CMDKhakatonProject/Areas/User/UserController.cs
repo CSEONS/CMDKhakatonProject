@@ -16,7 +16,7 @@ namespace CMDKhakatonProject.Areas.User
         }
 
         [HttpGet("Orders")]
-        public async Task<IActionResult> GetOrders([FromRoute] Guid userId, [FromQuery] int start, [FromQuery] int count)
+        public async Task<IActionResult> GetOrders([FromRoute] string userId, [FromQuery] int start, [FromQuery] int count)
         {
             GetOrdersRequest request = new()
             {

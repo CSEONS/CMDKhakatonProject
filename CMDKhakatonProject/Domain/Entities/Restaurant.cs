@@ -4,7 +4,7 @@ namespace CMDKhakatonProject.Domain.Entities
 {
     public class Restaurant
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string? Name { get; set; }
         public string? PhotoBase64 { get; set; }
         public string? LogoBase64 { get; set; }

@@ -39,7 +39,17 @@ namespace CMDKhakatonProject.Domain.Repositories.EF
             throw new NotImplementedException();
         }
 
+        public Dish GetById(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Dish GetByIdEager(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Dish GetByIdEager(string id)
         {
             throw new NotImplementedException();
         }

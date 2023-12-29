@@ -2,10 +2,10 @@
 {
     public class Present
     {
-        public Guid Id { get; set; }
-        public Guid ReciverId { get; set; }
+        public string Id { get; set; }
+        public string ReciverId { get; set; }
         public AppUser Reciver { get; set; }
-        public Guid DishId { get; set; }
+        public string DishId { get; set; }
         public Dish Dish { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace CMDKhakatonProject.MediatR.User
 {
     public class AddDishToBasketRequest : IRequest<IActionResult>
     {
-        public Guid DishId { get; set; }
+        public string DishId { get; set; }
         public int Amont {  get; set; }
         public string? Description { get; set; }
         #region Attribute

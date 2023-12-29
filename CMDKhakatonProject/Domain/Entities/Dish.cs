@@ -6,8 +6,8 @@ namespace CMDKhakatonProject.Domain.Entities
 {
     public class Dish
     {
-        public Guid Id { get; set; }
-        public Guid? RestourantId { get; set; }
+        public string Id { get; set; }
+        public string? RestourantId { get; set; }
         public Restaurant? Restourant { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

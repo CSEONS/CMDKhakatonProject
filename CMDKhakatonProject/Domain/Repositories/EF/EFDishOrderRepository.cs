@@ -32,12 +32,17 @@ namespace CMDKhakatonProject.Domain.Repositories.EF
             throw new NotImplementedException();
         }
 
-        public DishOrder GetById(Guid id)
+        public DishOrder GetById(string id)
         {
             return _context.DishOrders.FirstOrDefault(o => o.Id == id);
         }
 
         public DishOrder GetByIdEager(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DishOrder GetByIdEager(string id)
         {
             throw new NotImplementedException();
         }
