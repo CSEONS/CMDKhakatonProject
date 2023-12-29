@@ -47,6 +47,7 @@ namespace VolgaIt
             builder.Services.AddTransient<IRepository<Dish>, EFDishRepository>();
             builder.Services.AddTransient<IRepository<DishOrder>, EFDishOrderRepository>();
             builder.Services.AddTransient<IRepository<Reservation>, EFReservationRepository>();
+            builder.Services.AddTransient<IRepository<Present>, EFPresentRepository>();
 
             builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>(setup => { })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
