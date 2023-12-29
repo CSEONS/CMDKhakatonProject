@@ -100,14 +100,15 @@ namespace CMDKhakatonProject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4f315ec3-8a65-4c86-8c0b-717784a395b5",
+                            Id = "aa5d767e-50c0-4e85-b1c7-c5f62322d222",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5a8df05e-a45d-4516-a016-f6f70d090720",
+                            ConcurrencyStamp = "a49f8cdb-ad1b-4362-8f7a-6d18ed8955e4",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEC7hdC+9vkYLZ3m1fz621f6hfjbVta0gTJ+titkjVbRs8HqfcGAz0WILYa3yUBJrzQ==",
+                            NormalizedUserName = "USER",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHBCOMnxuyqqt9NSlzhwDRMKiOFUuNESNjkdGMhTSuJ/MKiI931ZsvXy+xUxMuG3ZA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5dae3bb4-4fd7-4f82-a6c1-f583aa545108",
+                            SecurityStamp = "9c87e117-4d08-4409-b357-3f5e56013592",
                             TwoFactorEnabled = false,
                             UserName = "User"
                         });
@@ -248,7 +249,7 @@ namespace CMDKhakatonProject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4f315ec3-8a65-4c86-8c0b-717784a395b5"
+                            Id = "aa5d767e-50c0-4e85-b1c7-c5f62322d222"
                         });
                 });
 
@@ -323,13 +324,13 @@ namespace CMDKhakatonProject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e1cbe99f-1840-42b6-8b28-4de816194f76",
+                            Id = "5d519aed-5d26-4777-883a-dd1692ef5f88",
                             Name = "restaurant",
                             NormalizedName = "RESTAURANT"
                         },
                         new
                         {
-                            Id = "7b5639ee-1151-4136-8cd4-10beb4c55e6a",
+                            Id = "5f41ee67-5017-4224-ba70-11cf9e0592bc",
                             Name = "user",
                             NormalizedName = "USER"
                         });

@@ -326,19 +326,19 @@ namespace CMDKhakatonProject.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "7b5639ee-1151-4136-8cd4-10beb4c55e6a", null, "user", "USER" },
-                    { "e1cbe99f-1840-42b6-8b28-4de816194f76", null, "restaurant", "RESTAURANT" }
+                    { "5d519aed-5d26-4777-883a-dd1692ef5f88", null, "restaurant", "RESTAURANT" },
+                    { "5f41ee67-5017-4224-ba70-11cf9e0592bc", null, "user", "USER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccesToken", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PhotoBase64", "RefreshToken", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "4f315ec3-8a65-4c86-8c0b-717784a395b5", null, 0, "5a8df05e-a45d-4516-a016-f6f70d090720", null, false, false, null, null, null, "AQAAAAIAAYagAAAAEC7hdC+9vkYLZ3m1fz621f6hfjbVta0gTJ+titkjVbRs8HqfcGAz0WILYa3yUBJrzQ==", null, false, null, null, null, "5dae3bb4-4fd7-4f82-a6c1-f583aa545108", false, "User" });
+                values: new object[] { "aa5d767e-50c0-4e85-b1c7-c5f62322d222", null, 0, "a49f8cdb-ad1b-4362-8f7a-6d18ed8955e4", null, false, false, null, null, "USER", "AQAAAAIAAYagAAAAEHBCOMnxuyqqt9NSlzhwDRMKiOFUuNESNjkdGMhTSuJ/MKiI931ZsvXy+xUxMuG3ZA==", null, false, null, null, null, "9c87e117-4d08-4409-b357-3f5e56013592", false, "User" });
 
             migrationBuilder.InsertData(
                 table: "Restournats",
                 columns: new[] { "Id", "Address", "LogoBase64", "Name", "PhotoBase64", "Rating" },
-                values: new object[] { "4f315ec3-8a65-4c86-8c0b-717784a395b5", null, null, null, null, null });
+                values: new object[] { "aa5d767e-50c0-4e85-b1c7-c5f62322d222", null, null, null, null, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

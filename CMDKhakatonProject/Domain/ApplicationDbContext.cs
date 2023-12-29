@@ -25,7 +25,8 @@ namespace CMDKhakatonProject.Domain
                 Id = Guid.NewGuid().ToString(),
                 UserName = "User",
                 NormalizedUserName = "USER",
-                PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "User95_1")
+                PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "User95_1"),
+                Role = "restaurant"
             };
 
             Restaurant restaurant = new()
