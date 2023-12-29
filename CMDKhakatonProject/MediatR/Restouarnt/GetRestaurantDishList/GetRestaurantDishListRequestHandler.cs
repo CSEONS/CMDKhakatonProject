@@ -35,6 +35,9 @@ namespace CMDKhakatonProject.MediatR.Restouarnt
             if (request.Tgas?.Length > 0)
                 dishes = dishes.Where(d => d.Tags.Select(t => t.Name).Intersect(request.Tgas).Any());
 
+            if (request.SearchText is not null)
+                dishes = dishes.Where(d => d.Name.Contains(request.SearchText));
+
             dishes = dishes
                 .Skip(request.Start)
                 .Take(request.Count)
